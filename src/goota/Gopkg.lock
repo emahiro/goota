@@ -14,6 +14,12 @@
   version = "v1.6.0"
 
 [[projects]]
+  name = "github.com/k0kubun/pp"
+  packages = ["."]
+  revision = "027a6d1765d673d337e687394dbe780dd64e2a1e"
+  version = "v2.3.0"
+
+[[projects]]
   name = "github.com/labstack/gommon"
   packages = ["color","log"]
   revision = "57409ada9da0f2afad6664c49502f8c50fbd8476"
@@ -52,6 +58,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "61ccc28c254c0a4e92a5568fc2528de71632270e04c41c981623010d852bc45b"
+  inputs-digest = "a1bdd97f2589d342cad7d7107abfdac6a4e86232d87dbfd68ac0ba8c6ed12f3a"
   solver-name = "gps-cdcl"
   solver-version = 1

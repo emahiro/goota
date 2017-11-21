@@ -10,7 +10,7 @@ type Qiita struct {
 	Coediting      bool      `json:"coediting"`
 	CommentsCount  int64     `json:"comments_count"`
 	Group          struct{}  `json:"group"`
-	ID             int64     `json:"id"`
+	ID             string    `json:"id"`
 	LikesCount     int64     `json:"likes_count"`
 	Private        bool      `json:"private"`
 	ReactionsCount int64     `json:"reactions_count"`

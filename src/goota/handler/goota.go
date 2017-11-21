@@ -1,8 +1,11 @@
 package handler
 
 import (
+	"encoding/json"
+	"io/ioutil"
 	"net/http"
 
+	"goota/model"
 	"goota/service"
 
 	"github.com/labstack/gommon/log"
@@ -21,5 +24,14 @@ func GootaSearchInstances(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatalf("GootaGetInstances error. err: %v", err)
 	}
+
+	body := resp.Body
+	defer body.Close()
+	b, _ := ioutil.ReadAll(body)
+	var q []model.Qiita
+	if err := json.Unmarshal(b, &q); err != nil {
+		log.Fatalf("json unmarshal error. err: %v", err)
+	}
+
 	log.Printf("resp: %v", resp)
 }
