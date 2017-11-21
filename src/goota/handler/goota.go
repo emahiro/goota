@@ -28,10 +28,10 @@ func GootaSearchInstances(w http.ResponseWriter, r *http.Request) {
 	body := resp.Body
 	defer body.Close()
 	b, _ := ioutil.ReadAll(body)
-	var q []model.Qiita
+	var q []model.Goota
 	if err := json.Unmarshal(b, &q); err != nil {
 		log.Fatalf("json unmarshal error. err: %v", err)
 	}
 
-	log.Printf("resp: %v", resp)
+	log.Printf("resp: %v", q)
 }
