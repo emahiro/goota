@@ -1,6 +1,9 @@
 package service
 
 import (
+	"encoding/json"
+	"goota/model"
+	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strings"
@@ -27,7 +30,7 @@ func (g GootaClient) new() http.Client {
 	return http.Client{}
 }
 
-func (g GootaClient) GetInstances(v *url.Values) (*http.Response, error) {
+func (g GootaClient) GetInstances(v *url.Values) (*[]model.Goota, error) {
 	var query string
 	rawTags := v.Get("query")
 	query = buildQuery(rawTags)
@@ -43,7 +46,16 @@ func (g GootaClient) GetInstances(v *url.Values) (*http.Response, error) {
 		log.Fatalf("request error. err: %v", err)
 		return nil, err
 	}
-	return resp, nil
+
+	body := resp.Body
+	defer body.Close()
+	b, _ := ioutil.ReadAll(body)
+	var result []model.Goota
+	if err := json.Unmarshal(b, &result); err != nil {
+		log.Fatalf("json unmarshal error. err: %v", err)
+	}
+
+	return &result, nil
 }
 
 func buildQuery(rawTags string) string {
