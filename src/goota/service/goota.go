@@ -69,7 +69,7 @@ func buildQuery(rawTags string) string {
 		}
 		q += "tag:" + t
 		break
-	}
+	}"
 	return q
 }
 
