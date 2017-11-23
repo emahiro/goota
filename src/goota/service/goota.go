@@ -58,18 +58,22 @@ func (g GootaClient) GetInstances(v *url.Values) (*[]model.Goota, error) {
 	return &result, nil
 }
 
+// sample query => query=tag:go stocks:>100 OR tag:golang stocks:>100
 func buildQuery(rawTags string) string {
 	var q string
 	tags := extractTags(rawTags)
 	l := len(tags)
 	for i, t := range tags {
+		// stockが100以上
+		q += "stocks:>100 "
 		if i != l-1 {
 			q += "tag:" + t + " OR "
 			continue
 		}
 		q += "tag:" + t
 		break
-	}"
+	}
+
 	return q
 }
 
