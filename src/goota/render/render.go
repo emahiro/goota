@@ -5,14 +5,11 @@ import (
 	"net/http"
 )
 
-func RenderHTML(filename string, w http.ResponseWriter, data interface{}) error {
-	t, err := template.ParseFiles(filename)
+func RenderHTML(f string, w http.ResponseWriter, data interface{}) error {
+	t, err := template.ParseFiles(f)
 	if err != nil {
 		return err
 	}
 
-	if err := t.ExecuteTemplate(w, filename, data); err != nil {
-		return err
-	}
-	return nil
+	return t.Execute(w, data)
 }

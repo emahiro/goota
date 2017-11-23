@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"goota/render"
 	"goota/service"
 
 	"github.com/labstack/gommon/log"
@@ -11,7 +12,7 @@ import (
 
 // 検索ページ
 func GootaIndex(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Hello Goota"))
+	render.RenderHTML("templates/index.tmpl", w, nil)
 }
 
 func GootaSearchInstances(w http.ResponseWriter, r *http.Request) {
